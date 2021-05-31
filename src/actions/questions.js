@@ -13,21 +13,21 @@ export function receiveQuestions(questions) {
   };
 }
 
-function answerQuestion({ qid, authedUser, answer }) {
+function answerQuestion({ authedUser, qid, answer }) {
   return {
     type: ANSWER_QUESTION,
-    qid,
     authedUser,
+    qid,
     answer,
   };
 }
 
-export function handleAnswerQuestion(info) {
+export function handleAnswerQuestion({ authedUser, qid, answer }) {
   return (dispatch) => {
     dispatch(showLoading());
-    return saveQuestionAnswer(info).then(() => {
-      dispatch(userAnswerQuestion(info));
-      dispatch(answerQuestion(info));
+    return saveQuestionAnswer({ authedUser, qid, answer }).then(() => {
+      dispatch(userAnswerQuestion({ authedUser, qid, answer }));
+      dispatch(answerQuestion({ authedUser, qid, answer }));
       dispatch(hideLoading());
     });
   };

@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+// import { Redirect } from "react-router-dom";
 
 import { setAuthedUser } from "../actions/authedUser";
 
 export class Login extends Component {
   state = {
     authedUser: "",
+    loggedIn: false,
   };
 
   onUserSelectChange = (e) => {
@@ -20,6 +22,10 @@ export class Login extends Component {
     if (this.state.authedUser.length) {
       dispatch(setAuthedUser(this.state.authedUser));
       this.props.history.push("/");
+      // this.setState(() => ({
+      //   authedUser: "",
+      //   loggedIn: true,
+      // }));
     } else {
       alert("Please Select user first");
     }
@@ -32,6 +38,10 @@ export class Login extends Component {
       id: users[userId].id,
       name: users[userId].name,
     }));
+
+    // if (this.state.loggedIn) {
+    //   <Redirect to="/" />;
+    // }
 
     return (
       <div>

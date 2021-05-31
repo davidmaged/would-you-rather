@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 import Dashboard from "./Dashboard";
 import LeaderBoard from "./LeaderBoard";
@@ -19,7 +19,8 @@ export class Home extends Component {
           <Route path="/questions/:id" component={QuestionPage} />
           <Route path="/add" component={NewQuestion} />
           <Route path="/leaderboard" component={LeaderBoard} />
-          <Route path="*" component={PageNotFound} />
+          <Route path="/404" component={PageNotFound} />
+          <Redirect to="/404" />
         </Switch>
       </Fragment>
     );

@@ -9,6 +9,7 @@ export class QuestionPage extends Component {
   state = {
     option: "",
     toHome: false,
+    answerd: false,
   };
   onValueChange = (e) => {
     const option = e.currentTarget.value;
@@ -24,9 +25,18 @@ export class QuestionPage extends Component {
     dispatch(handleAnswerQuestion(ret));
     this.setState(() => ({
       option: "",
-      toHome: true,
+      // toHome: true,
+      answerd: true,
     }));
   };
+
+  componentDidMount() {
+    if (this.props.answered) {
+      this.setState(() => ({
+        answerd: true,
+      }));
+    }
+  }
 
   render() {
     const { questionInfo, answerd } = this.props;
@@ -38,9 +48,14 @@ export class QuestionPage extends Component {
     const perc1 = (votes1 / (votes1 + votes2)) * 100;
     const perc2 = (votes2 / (votes1 + votes2)) * 100;
 
-    if (this.state.toHome === true) {
-      return <Redirect to="/" />;
+    // console.log(question);
+    if (!avatarURL) {
+      return <Redirect to="/404" />;
     }
+
+    // if (this.state.toHome === true) {
+    //   return <Redirect to="/" />;
+    // }
     return (
       <div>
         <div className="question">

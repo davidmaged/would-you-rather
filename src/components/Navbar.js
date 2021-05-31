@@ -6,7 +6,7 @@ import { removeAuthedUser } from "../actions/authedUser";
 
 class Navbar extends Component {
   logout = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const { dispatch } = this.props;
     dispatch(removeAuthedUser());
   };
